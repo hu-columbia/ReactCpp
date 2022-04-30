@@ -13,7 +13,26 @@ class BasicUsage: public Component<Nothing, Nothing> {
   ReactNode render() const {
 //	  PropsOf<Pixel> a = {};
 	  Pixel::PropsType p = {1, 2, '*'};
-	  return h<Pixel>(p);
+
+	  Group::PropsType groupProps;
+	  for (int i = 0; i < 10; ++i) {
+		  Pixel::PropsType p = {i, 4, '+'};
+		  groupProps.children.push_back(h<Pixel>(p));
+	  }
+	  auto comp1 = h<Group>(groupProps);
+
+	  Group::PropsType groupProps2;
+	  for (int i = 0; i < 10; ++i) {
+		  Pixel::PropsType p = {2, i, '&'};
+		  groupProps2.children.push_back(h<Pixel>(p));
+	  }
+	  auto comp2 = h<Group>(groupProps2);
+
+	  Group::PropsType groupProps3;
+	  groupProps3.children.push_back(comp1);
+	  groupProps3.children.push_back(comp2);
+
+	  return h<Group>(groupProps3);
   }
 };
 

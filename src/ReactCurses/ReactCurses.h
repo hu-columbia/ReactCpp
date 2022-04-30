@@ -31,9 +31,6 @@ class ReactCurses {
 
   static void renderNode(ReactNode &node) {
 	  node.body();
-	  for (auto &child: node.children) {
-		  renderNode(child);
-	  }
   }
 };
 
@@ -50,16 +47,20 @@ class Pixel: public Component<PixelProps> {
 		::move(this->props.i, this->props.j);
 		::addch(this->props.c);
 	  };
-	  return {work, {}};
+	  return {work};
   }
 };
 
 
-class Group: public Component<Nothing> {
+class Group: public Component<WithChildren> {
  public:
-  Group(Nothing props) : Component<Nothing>(props) {}
+  Group(WithChildren props) : Component<WithChildren>(props) {}
   ReactNode render() const override {
-	  return {[]() {}, {}};
+	  return {[this]() {
+		  for (auto &child: this->props.children) {
+			  child.body();
+		  }
+	  }};
   }
 };
 

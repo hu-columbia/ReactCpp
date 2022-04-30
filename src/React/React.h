@@ -20,8 +20,11 @@ struct Nothing {
 class ReactNode {
  public:
   std::function<void()> body;
+  ReactNode(std::function<void()> body) : body(body) {}
+};
+
+struct WithChildren {
   std::vector<ReactNode> children;
-  ReactNode(std::function<void()> body, std::vector<ReactNode> children) : body(body), children(children) {}
 };
 
 class ComponentBase {
@@ -62,7 +65,7 @@ ReactNode h(typename Component::PropsType props, std::vector<ReactNode> children
 	  Component component(props);
 	  auto node = component.render();
 	  node.body();
-	}, children);
+	});
 }
 
 #endif //REACTCPP_REACT_H
