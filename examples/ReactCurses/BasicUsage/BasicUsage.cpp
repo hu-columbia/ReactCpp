@@ -3,16 +3,24 @@
 //
 
 #include <React.h>
+#include <ReactCurses.h>
 
-class BasicUsage: Component<Nothing, Nothing> {
+class BasicUsage: public Component<Nothing, Nothing> {
  public:
-  ReactNode render() {
-    
+  BasicUsage(Nothing props) : Component<Nothing, Nothing>(props) {
+  }
+
+  ReactNode render() const {
+//	  PropsOf<Pixel> a = {};
+	  Pixel::PropsType p = {1, 2, '*'};
+	  return h<Pixel>(p);
   }
 };
 
 int main() {
 
+	auto root = h<BasicUsage>({});
+	ReactCurses::render(root);
 
-  return 0;
+	return 0;
 }

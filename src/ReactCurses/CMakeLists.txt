@@ -3,4 +3,4 @@ add_library(ReactCurses
         ReactCurses.h
         )
 
-target_link_libraries(ReactCurses React)
+#target_link_libraries(ReactCurses React)
