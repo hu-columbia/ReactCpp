@@ -3,4 +3,9 @@ project(ReactCpp)
 
 set(CMAKE_CXX_STANDARD 20)
 
-add_executable(ReactCpp main.cpp)
+include_directories(src/React)
+include_directories(src/ReactCurses)
+include_directories(src/ReactQt)
+
+add_subdirectory(src)
+add_subdirectory(examples)

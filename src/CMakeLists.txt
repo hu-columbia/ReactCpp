@@ -1,0 +1,2 @@
+add_subdirectory(ReactCurses)
+add_subdirectory(ReactQt)
